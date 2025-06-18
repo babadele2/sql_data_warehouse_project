@@ -61,7 +61,7 @@ These insights empower stakeholders with key business metrics, enabling strategi
 
 For more details, refer to docs/requirements.md.
 
-## 📂 Repository Structure
+### 📂 Repository Structure
 data-warehouse-project/
 │
 ├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
@@ -85,3 +85,9 @@ data-warehouse-project/
 ├── LICENSE                             # License information for the repository
 ├── .gitignore                          # Files and directories to be ignored by Git
 └── requirements.txt                    # Dependencies and requirements for the project
+
+
+
+
+### About Me
+Hi there! I'm Oladele Adekunle Awonusi, also known as babadele. I’m an IT professional, passionate and curious always about the stories behind every Data!

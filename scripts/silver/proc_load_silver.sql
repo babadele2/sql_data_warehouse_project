@@ -1,6 +1,5 @@
-PostgreSQL Version of the Silver Layer Loading Procedure
+-- PostgreSQL Version of the Silver Layer Loading Procedure
 
-```sql
 /*
 ===============================================================================
 Stored Procedure: Load Silver Layer (Bronze -> Silver)

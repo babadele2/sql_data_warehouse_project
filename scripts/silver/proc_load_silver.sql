@@ -1,4 +1,4 @@
-# PostgreSQL Version of the Silver Layer Loading Procedure
+PostgreSQL Version of the Silver Layer Loading Procedure
 
 ```sql
 /*

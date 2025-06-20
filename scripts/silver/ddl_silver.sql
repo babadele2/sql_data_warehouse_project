@@ -24,7 +24,7 @@ CREATE TABLE silver.crm_cust_info (
     cst_marital_status  VARCHAR(50),
     cst_gndr            VARCHAR(50),
     cst_create_date     DATE
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Drop and create silver.crm_prd_info

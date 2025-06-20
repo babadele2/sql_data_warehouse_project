@@ -20,13 +20,15 @@ Usage Example:
 ===============================================================================
 */
 
+-- Loading silver.crm_cust_info Table
+
 TRUNCATE TABLE silver.crm_cust_info;
 INSERT INTO silver.crm_cust_info (
 	cst_id, 
 	cst_key, 
 	cst_firstname, 
 	cst_lastname,
-    cst_marital_status, 
+        cst_marital_status, 
 	cst_gndr, 
 	cst_create_date)
 	

@@ -89,9 +89,105 @@ CASE
 
 
 
+-- Loading crm_sales_details after Transformation
+
+DO $$
+DECLARE
+    start_time TIMESTAMP := CURRENT_TIMESTAMP;
+    end_time TIMESTAMP;
+BEGIN
+    RAISE NOTICE '>> Truncating Table: silver.crm_sales_details';
+    TRUNCATE TABLE silver.crm_sales_details;
+
+    RAISE NOTICE '>> Inserting Data Into: silver.crm_sales_details';
+    INSERT INTO silver.crm_sales_details (
+        sls_ord_num,
+        sls_prd_key,
+        sls_cust_id,
+        sls_order_dt,
+        sls_ship_dt,
+        sls_due_dt,
+        sls_sales,
+        sls_quantity,
+        sls_price
+    )
+    SELECT 
+        sls_ord_num,
+        sls_prd_key,
+        sls_cust_id,
+        CASE 
+            WHEN sls_order_dt = 0 OR LENGTH(sls_order_dt::TEXT) != 8 THEN NULL
+            ELSE TO_DATE(sls_order_dt::TEXT, 'YYYYMMDD')
+        END AS sls_order_dt,
+        CASE 
+            WHEN sls_ship_dt = 0 OR LENGTH(sls_ship_dt::TEXT) != 8 THEN NULL
+            ELSE TO_DATE(sls_ship_dt::TEXT, 'YYYYMMDD')
+        END AS sls_ship_dt,
+        CASE 
+            WHEN sls_due_dt = 0 OR LENGTH(sls_due_dt::TEXT) != 8 THEN NULL
+            ELSE TO_DATE(sls_due_dt::TEXT, 'YYYYMMDD')
+        END AS sls_due_dt,
+        CASE 
+            WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales != sls_quantity * ABS(sls_price) 
+                THEN sls_quantity * ABS(sls_price)
+            ELSE sls_sales
+        END AS sls_sales,
+        sls_quantity,
+        CASE 
+            WHEN sls_price IS NULL OR sls_price <= 0 
+                THEN sls_sales / NULLIF(sls_quantity, 0)
+            ELSE sls_price
+        END AS sls_price
+    FROM bronze.crm_sales_details;
+
+    end_time := CURRENT_TIMESTAMP;
+    RAISE NOTICE '>> Load Duration: % seconds', EXTRACT(SECOND FROM end_time - start_time)::INT;
+    RAISE NOTICE '>> -------------';
+END $$;
 
 
 
+
+-- Loading silver.erp_cust_az12 Table after Transformation
+
+DO $$
+DECLARE
+    start_time TIMESTAMP := CURRENT_TIMESTAMP;
+    end_time TIMESTAMP;
+BEGIN
+    RAISE NOTICE '>> Truncating Table: silver.erp_cust_az12';
+    TRUNCATE TABLE silver.erp_cust_az12;
+
+    RAISE NOTICE '>> Inserting Data Into: silver.erp_cust_az12';
+    INSERT INTO silver.erp_cust_az12 (
+        cid,
+        bdate,
+        gen
+    )
+    SELECT
+        CASE
+            WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid FROM 4)  -- Remove 'NAS' prefix if present
+            ELSE cid
+        END AS cid,
+        CASE
+            WHEN bdate > CURRENT_DATE THEN NULL  -- Set future birthdates to NULL
+            ELSE bdate
+        END AS bdate,
+        CASE
+            WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
+            WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
+            ELSE 'n/a'
+        END AS gen  -- Normalize gender values and handle unknown cases
+    FROM bronze.erp_cust_az12;
+
+    end_time := CURRENT_TIMESTAMP;
+    RAISE NOTICE '>> Load Duration: % seconds', EXTRACT(SECOND FROM end_time - start_time)::INT;
+    RAISE NOTICE '>> -------------';
+
+    RAISE NOTICE '------------------------------------------------';
+    RAISE NOTICE 'Loading ERP Tables';
+    RAISE NOTICE '------------------------------------------------';
+END $$;
 
 
 

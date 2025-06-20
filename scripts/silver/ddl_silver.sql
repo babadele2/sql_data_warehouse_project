@@ -38,7 +38,7 @@ CREATE TABLE silver.crm_prd_info (
     prd_line     VARCHAR(50),
     prd_start_dt TIMESTAMP,
     prd_end_dt   TIMESTAMP
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Drop and create silver.crm_sales_details
@@ -54,7 +54,7 @@ CREATE TABLE silver.crm_sales_details (
     sls_sales    INTEGER,
     sls_quantity INTEGER,
     sls_price    INTEGER
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Drop and create silver.erp_loc_a101
@@ -63,7 +63,7 @@ DROP TABLE IF EXISTS silver.erp_loc_a101;
 CREATE TABLE silver.erp_loc_a101 (
     cid    VARCHAR(50),
     cntry  VARCHAR(50)
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Drop and create silver.erp_cust_az12
@@ -73,7 +73,7 @@ CREATE TABLE silver.erp_cust_az12 (
     cid    VARCHAR(50),
     bdate  DATE,
     gen    VARCHAR(50)
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Drop and create silver.erp_px_cat_g1v2
@@ -84,7 +84,7 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
     cat          VARCHAR(50),
     subcat       VARCHAR(50),
     maintenance  VARCHAR(50)
-	dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dhw_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -102,7 +102,7 @@ CREATE TABLE silver.crm_cust_info (
     cst_marital_status  NVARCHAR(50),
     cst_gndr            NVARCHAR(50),
     cst_create_date     DATE
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 
@@ -118,7 +118,7 @@ CREATE TABLE silver.crm_prd_info (
     prd_line     NVARCHAR(50),
     prd_start_dt DATETIME,
     prd_end_dt   DATETIME
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 
@@ -136,7 +136,7 @@ CREATE TABLE silver.crm_sales_details (
     sls_sales    INT,
     sls_quantity INT,
     sls_price    INT
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 
@@ -147,7 +147,7 @@ GO
 CREATE TABLE silver.erp_loc_a101 (
     cid    NVARCHAR(50),
     cntry  NVARCHAR(50)
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 
@@ -159,7 +159,7 @@ CREATE TABLE silver.erp_cust_az12 (
     cid    NVARCHAR(50),
     bdate  DATE,
     gen    NVARCHAR(50)
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 
@@ -172,7 +172,7 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
     cat          NVARCHAR(50),
     subcat       NVARCHAR(50),
     maintenance  NVARCHAR(50)
-	dhw_create_date  DATETIME2 DEFAULT GETDATE()
+    dhw_create_date  DATETIME2 DEFAULT GETDATE()
 );
 GO
 

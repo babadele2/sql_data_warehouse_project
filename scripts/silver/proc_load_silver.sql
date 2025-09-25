@@ -20,7 +20,7 @@ Usage Example:
 ===============================================================================
 */
 
--- Loading silver.crm_cust_info Table
+-- Loading silver.crm_cust_info Table after Transformation
 
 TRUNCATE TABLE silver.crm_cust_info;
 INSERT INTO silver.crm_cust_info (
